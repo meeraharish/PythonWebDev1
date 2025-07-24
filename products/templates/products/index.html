@@ -1,0 +1,31 @@
+{% extends 'products/base.html' %}
+
+{% block content %}
+<h1 class="text-center my-4">Products</h1>
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.image_url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                    <button class="btn btn-primary" onclick="addToCart(this)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    function addToCart(button) {
+        button.innerText = "Item Added";
+        button.classList.remove("btn-primary");
+        button.classList.add("btn-success");
+        button.disabled = true;
+        alert("Item added to cart!");
+    }
+</script>
+{% endblock %}
